@@ -1,14 +1,14 @@
 FROM nginx:alpine
 
-#Add index.html
-COPY index.html /usr/share/nginx/html
-
 # Remove the default Nginx configuration file
 RUN rm -v /etc/nginx/nginx.conf
 
 # Copy a configuration file from the current directory
 ADD nginx.conf /etc/nginx/
-RUN mkdir /etc/nginx/logs
+RUN mkdir /etc/nginx/logs && RUN mkdir /www/data
+
+#Add index.html
+COPY index.html /www/data
 
 # Append "daemon off;" to the beginning of the configuration
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
