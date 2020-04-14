@@ -16,7 +16,7 @@ agent any
         stage('Push Docker Image') {
             steps{
                 script {
-                docker.withRegistry( '', params.credential_id ) {
+                docker.withRegistry( 'https://registry.hub.docker.com', 'docker-hub-credentials') {
                 image.push()
                 }
                 }
