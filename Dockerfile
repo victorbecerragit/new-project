@@ -3,9 +3,9 @@ FROM nginx:alpine
 # Copy a configuration file from the current directory
 COPY runner.sh /
 ADD nginx.conf /etc/nginx/
-RUN mkdir /etc/nginx/logs &&  mkdir -p /www/data && chmod +x /runner.sh
+RUN mkdir /etc/nginx/logs && mkdir -p /www/data && chmod +x /runner.sh
 COPY index.html /www/data
-
+RUN chmod 664 /www/data/index.html
 # Expose port 80 and setup startup script
 EXPOSE 80
 ENTRYPOINT ["/runner.sh"]
